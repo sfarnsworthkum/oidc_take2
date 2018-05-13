@@ -1,2 +1,10 @@
-<h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+<p>
+  To access your dashboard,
+  {{#if userinfo}}
+    <a href="/dashboard">click here</a>.
+  {{else}}
+    <a href="/dashboard">sign in</a>.
+  {{/if}}
+</p>
+
