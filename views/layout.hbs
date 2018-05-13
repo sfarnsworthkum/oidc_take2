@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,6 +6,22 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    {{{body}}}
+    <header>
+      <h1>{{title}}</h1>
+      {{#if userinfo}}
+        <div>
+          Signed in as {{userinfo.name}}
+        </div>
+      {{/if}}
+      {{#if userinfo}}
+        <a href="/logout">Sign out</a>
+      {{else}}
+        <a href="/login">Sign in</a>
+      {{/if}}
+    </header>
+    <main>
+      {{{body}}}
+    </main>
   </body>
 </html>
+
