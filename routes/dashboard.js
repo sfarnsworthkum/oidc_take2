@@ -16,8 +16,8 @@ router.get("/", (req, res, next) => {
 
   res.render("dashboard", {
     title: "Dashboard",
+    userinfo: req.userinfo,
     descriptionList,
-    userinfo
   });
 });
 
