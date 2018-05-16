@@ -4,24 +4,29 @@
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
     <header>
+      <a href="/"><img src="https://stormpath.com/wp-content/uploads/2016/08/logo.png" height=50 /></a>
+      <div class="row">
+
+      </div>
       <h1>{{title}}</h1>
-      {{#if userinfo}}
-        <div>
-          Signed in as {{userinfo.name}}
-        </div>
-      {{/if}}
-      {{#if userinfo}}
-        <a href="/logout">Sign out</a>
-      {{else}}
-        <a href="/login">Sign in</a>
-      {{/if}}
+        {{#if userinfo}}
+          <h4>
+            Signed in as {{userinfo.name}}
+          </h4>
+        {{/if}}
+        {{#if userinfo}}
+          <a href="/logout"><h5>Sign out</h5></a>
+        {{else}}
+          <a href="/login">Sign in</a>
+        {{/if}}
+      </h4>
     </header>
     <main>
       {{{body}}}
     </main>
   </body>
 </html>
-

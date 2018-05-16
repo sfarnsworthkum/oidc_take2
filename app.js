@@ -6,8 +6,11 @@ var logger = require("morgan");
 const session = require("express-session");
 const { ExpressOIDC } = require("@okta/oidc-middleware");
 
-var indexRouter = require("./routes/index");
+const indexRouter = require("./routes/index");
 const dashboardRouter = require("./routes/dashboard");
+const registerRouter = require("./routes/register");
+const resetPassword = require("./routes/reset-password");
+var bodyParser = require('body-parser');
 
 var app = express();
 
@@ -19,6 +22,10 @@ const oidc = new ExpressOIDC({
   scope: "openid profile"
 });
 
+// Put these statements before you define any routes.
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
@@ -27,6 +34,7 @@ app.use(logger("dev"));
 app.use(express.json());
 //app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
@@ -39,6 +47,8 @@ app.use(
 
 app.use(oidc.router);
 app.use("/", indexRouter);
+app.use("/register", registerRouter);
+app.use("/reset-password", resetPassword);
 app.use("/dashboard", oidc.ensureAuthenticated(), dashboardRouter);
 app.get("/logout", (req, res) => {
   req.logout();

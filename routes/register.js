@@ -20,6 +20,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
+  console.log(req);
   try {
     await client.createUser({
       profile: {
@@ -37,6 +38,9 @@ router.post('/', async (req, res, next) => {
 
     res.redirect('/dashboard')
   } catch ({ errorCauses }) {
+    console.log(req.body)
+    console.log("-----------")
+    console.log(errorCauses)
     const errors = errorCauses.reduce((summary, { errorSummary }) => {
       if (/Password/.test(errorSummary)) {
         return Object.assign({ password: errorSummary })
